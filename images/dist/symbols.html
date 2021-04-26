@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Icon kit preview | gulp-svg-sprites</title>
+    <link href="css/sprite.css" rel="stylesheet" type="text/css" media="all"/>
+    <style type="text/css">@CHARSET "UTF-8";
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        padding: 0;
+        margin: 0;
+        color: #666;
+        background: #fafafa;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        line-height: 1.4
+    }
+
+    header {
+        display: block;
+        padding: 3em 3em 2em 3em;
+        background-color: #fff
+    }
+
+    header p {
+        margin: 0 0 0 0;
+    }
+
+    nav {
+        font-size: .7em;
+        display: block;
+        width: 100%;
+        margin: 0 0 2em 0
+    }
+
+    nav a {
+        display: inline-block;
+        text-decoration: none;
+        margin-left: 2em;
+        color: #0f7595;
+        white-space: nowrap
+    }
+
+    nav a:hover {
+        text-decoration: underline
+    }
+
+    nav a.current {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #666
+    }
+
+    section {
+        border-top: 1px solid #eee;
+        padding: 2em 3em 0 3em
+    }
+
+    ul {
+        margin: 0;
+        padding: 0
+    }
+
+    .icon-boxes li {
+        display: inline-block;
+        background-color: #fff;
+        position: relative;
+        margin: 0 2em 2em 0;
+        vertical-align: top;
+        border: 1px solid #ccc;
+        padding: 1em 1em 1em 1em;
+        cursor: default
+    }
+
+    .icon-box {
+        margin: 0;
+        width: 144px;
+        height: 144px;
+        position: relative;
+        background: #ccc url(data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=) top left repeat;
+        border: 1px solid #ccc;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center
+    }
+    .icon-box.inverted {
+        background: black;
+    }
+
+    .icon {
+        display: inline;
+        display: inline-block
+    }
+
+    .snippet-popover {
+        position: absolute;
+        display: none;
+        opacity: 0;
+        bottom: 0;
+        left: 0;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 16px;
+        z-index: 1;
+        transition: all .3s;
+    }
+    .snippet-popover.active {
+        display: block;
+        opacity: 1;
+    }
+
+    pre {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 5px 0;
+        font-size: 1em;
+        font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    h4 {
+        margin: 0;
+    }
+
+    footer {
+        display: block;
+        margin: 0;
+        padding: 0 3em 3em 3em
+    }
+
+    footer p {
+        margin: 0;
+        font-size: .7em
+    }
+
+    footer a {
+        color: #0f7595;
+        margin-left: 0
+    }
+    </style>
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" style="position:absolute">
+	
+		<symbol id="arrow" viewBox="0 0 32 32">
+			<path d="M14.751 7.11L.511 21.352c-.33.33-.511.77-.511 1.238 0 .469.182.908.511 1.238l1.049 1.048a1.753 1.753 0 0 0 2.475 0l11.958-11.958L27.965 24.89c.33.33.769.51 1.237.51.47 0 .909-.18 1.239-.51l1.048-1.049c.33-.33.511-.77.511-1.238 0-.469-.182-.908-.511-1.238L17.236 7.111a1.74 1.74 0 0 0-1.242-.51 1.74 1.74 0 0 0-1.243.51z"></path>
+		</symbol>
+	
+		<symbol id="email" viewBox="0 0 512 512">
+			<path d="M339.392 258.624L512 367.744V144.896zM0 144.896v222.848l172.608-109.12zM480 80H32C16.032 80 3.36 91.904.96 107.232L256 275.264l255.04-168.032C508.64 91.904 495.968 80 480 80zM310.08 277.952l-45.28 29.824a15.983 15.983 0 0 1-8.8 2.624c-3.072 0-6.112-.864-8.8-2.624l-45.28-29.856L1.024 404.992C3.488 420.192 16.096 432 32 432h448c15.904 0 28.512-11.808 30.976-27.008L310.08 277.952z"></path>
+		</symbol>
+	
+		<symbol id="facebook" viewBox="0 0 512 512">
+			<path d="M75 512h167V330h-60v-60h60v-75c0-41.355 33.645-75 75-75h75v60h-60c-16.543 0-30 13.457-30 30v60h87.293l-10 60H302v182h135c41.355 0 75-33.645 75-75V75c0-41.355-33.645-75-75-75H75C33.645 0 0 33.645 0 75v362c0 41.355 33.645 75 75 75zM30 75c0-24.813 20.188-45 45-45h362c24.813 0 45 20.188 45 45v362c0 24.813-20.188 45-45 45H332V360h72.707l20-120H332v-30h90V90H317c-57.898 0-105 47.102-105 105v45h-60v120h60v122H75c-24.813 0-45-20.188-45-45zm0 0"></path>
+		</symbol>
+	
+		<symbol id="mail" viewBox="0 0 512 512">
+			<path d="M467 76H45C20.137 76 0 96.262 0 121v270c0 24.885 20.285 45 45 45h422c24.655 0 45-20.03 45-45V121c0-24.694-20.057-45-45-45zm-6.302 30L287.82 277.967c-8.5 8.5-19.8 13.18-31.82 13.18s-23.32-4.681-31.848-13.208L51.302 106h409.396zM30 384.894V127.125L159.638 256.08 30 384.894zM51.321 406l129.587-128.763 22.059 21.943c14.166 14.166 33 21.967 53.033 21.967s38.867-7.801 53.005-21.939l22.087-21.971L460.679 406H51.321zM482 384.894L352.362 256.08 482 127.125v257.769z"></path>
+		</symbol>
+	
+		<symbol id="phone" viewBox="0 0 512.021 512.021">
+			<path d="M367.988 512.021c-16.528 0-32.916-2.922-48.941-8.744-70.598-25.646-136.128-67.416-189.508-120.795S34.389 263.572 8.744 192.974c-8.241-22.688-10.673-46.108-7.226-69.612 3.229-22.016 11.757-43.389 24.663-61.809 12.963-18.501 30.245-33.889 49.977-44.5C97.2 5.738 120.167 0 144.423 0a16.002 16.002 0 0 1 15.645 12.647l25.114 117.199a16.004 16.004 0 0 1-4.331 14.667l-42.913 42.912c40.482 80.486 106.17 146.174 186.656 186.656l42.912-42.913a16.01 16.01 0 0 1 14.667-4.331l117.199 25.114a16 16 0 0 1 12.647 15.645c0 24.256-5.738 47.224-17.054 68.266-10.611 19.732-25.999 37.014-44.5 49.977-18.419 12.906-39.792 21.434-61.809 24.663a142.318 142.318 0 0 1-20.668 1.519zM131.639 32.7c-31.995 3.532-60.393 20.302-79.251 47.217-21.206 30.265-26.151 67.49-13.567 102.132C88.125 317.775 194.246 423.896 329.972 473.2c34.641 12.584 71.866 7.64 102.132-13.567 26.915-18.858 43.685-47.256 47.217-79.251l-95.341-20.43-44.816 44.816a15.998 15.998 0 0 1-18.117 3.168c-95.19-44.72-172.242-121.772-216.962-216.962a15.999 15.999 0 0 1 3.168-18.117l44.816-44.816z"></path>
+		</symbol>
+	
+		<symbol id="services1" viewBox="0 0 81 81">
+			<path d="M36.586 53.001c.678.09 1.352.134 2.019.134 3.958 0 7.642-1.548 10.129-4.325 2.907-3.247 3.511-7.431 1.618-11.193l-3.45-6.855a6.443 6.443 0 0 1-.49-1.31c-.163-.64-.898-1.045-1.641-.906-.744.14-1.215.773-1.052 1.413.152.6.372 1.189.654 1.748l3.45 6.855c1.49 2.957 1.014 6.245-1.271 8.798-2.019 2.254-5.041 3.476-8.268 3.394.958-1.637 1.502-3.483 1.502-5.438v-1.67h.178c2.57 0 4.662-1.802 4.662-4.016 0-2.215-2.091-4.017-4.662-4.017h-.178v-2.9c0-1.428-1.298-2.576-2.955-2.614l-8.995-.204c-3.113-.07-6.158-1.043-8.575-2.736l-.592-.415a2.71 2.71 0 0 0-1.798-.46c-.651.06-1.236.336-1.645.777-2.251 2.422-3.51 5.452-3.567 8.552h-.184c-2.57 0-4.662 1.802-4.662 4.017 0 2.214 2.092 4.016 4.662 4.016h.179v1.67c0 1.955.543 3.802 1.502 5.439-3.227.082-6.25-1.14-8.269-3.395-2.284-2.553-2.76-5.841-1.271-8.798l3.45-6.855a8.5 8.5 0 0 0 .797-2.423c.39-2.338 1.362-4.512 2.887-6.462.425-.544.258-1.282-.373-1.648-.631-.366-1.487-.222-1.912.321-1.76 2.25-2.88 4.756-3.33 7.45a6.36 6.36 0 0 1-.597 1.817l-3.45 6.855c-1.894 3.762-1.29 7.946 1.618 11.193 2.486 2.777 6.17 4.325 10.128 4.325.667 0 1.342-.044 2.02-.134a13.911 13.911 0 0 0 4.145 2.957v2.872l-8.261 2.855c-.738.255-1.462.567-2.153.928-.65.34-.858 1.07-.463 1.63.259.369.713.572 1.18.572.242 0 .489-.055.712-.172a12.889 12.889 0 0 1 1.75-.755l7.525-2.6c.821 2.286 3.298 3.952 6.219 3.952 2.92 0 5.397-1.666 6.219-3.952l7.524 2.6c4.564 1.578 7.513 5.334 7.513 9.57v6.354c0 .656.617 1.187 1.378 1.187.76 0 1.378-.531 1.378-1.187v-6.354c0-5.211-3.628-9.832-9.242-11.773l-8.261-2.855v-2.684c1.767-.765 3.323-1.84 4.569-3.145zm3.378-15.014c1.051 0 1.906.737 1.906 1.643 0 .905-.855 1.642-1.906 1.642h-.178v-3.285h.178zm-28.489 3.285c-1.051 0-1.906-.737-1.906-1.642 0-.906.855-1.643 1.906-1.643h.179v3.285h-.179zm2.934 4.044V35.83c0-2.547.982-5.046 2.772-7.069l.341.24c2.886 2.022 6.523 3.182 10.242 3.267l8.994.204c.152.004.272.11.272.24v12.604c0 5.372-5.074 9.743-11.31 9.743-6.237 0-11.31-4.37-11.31-9.743zm14.852 14.316c0 1.783-1.684 3.234-3.753 3.234-2.07 0-3.753-1.45-3.753-3.233V56.94c1.258.319 2.588.493 3.965.493 1.222 0 2.409-.136 3.54-.39v2.59zM13.613 19.607c.301 0 .605-.084.859-.259 3.182-2.187 7.176-3.392 11.248-3.392 2.107 0 4.18.315 6.162.936.716.225 1.506-.094 1.766-.71s-.109-1.297-.824-1.521a23.732 23.732 0 0 0-7.104-1.079c-4.694 0-9.299 1.389-12.967 3.91-.595.41-.693 1.156-.218 1.669.272.293.673.446 1.078.446zM5.825 66.152c-.635-.36-1.49-.207-1.908.34-1.584 2.077-2.421 4.486-2.421 6.967v6.354c0 .656.616 1.187 1.377 1.187.762 0 1.378-.531 1.378-1.187v-6.354c0-2.017.681-3.975 1.97-5.663.417-.548.24-1.284-.396-1.644z"></path><path d="M72.993 0H44.494c-4.415 0-8.007 3.094-8.007 6.898v17.894c0 .85.497 1.631 1.33 2.088a3.268 3.268 0 0 0 2.76.156l2.22-.891h19.4c.762 0 1.379-.532 1.379-1.187 0-.656-.617-1.187-1.378-1.187H42.49c-.2 0-.4.038-.582.11l-2.497 1.004c-.018.007-.059.024-.114-.007-.056-.03-.056-.07-.056-.086V6.898c0-2.495 2.356-4.524 5.252-4.524h28.499c2.895 0 5.251 2.03 5.251 4.524v12.349c0 2.494-2.356 4.524-5.251 4.524h-4.917c-.761 0-1.378.531-1.378 1.187s.617 1.187 1.378 1.187h4.917c4.415 0 8.007-3.095 8.007-6.898V6.897C81 3.095 77.408 0 72.993 0z"></path><path d="M60.349 14.517c1.119-.23 2.152-.736 2.954-1.463 1.14-1.034 1.72-2.39 1.634-3.815-.162-2.679-2.728-4.82-5.843-4.873-3.017-.054-5.622 1.85-6.04 4.429a4.489 4.489 0 0 0-.057.716c0 .655.617 1.187 1.378 1.187.761 0 1.378-.532 1.378-1.187 0-.13.01-.261.03-.388.223-1.369 1.587-2.384 3.19-2.384h.065c1.678.03 3.06 1.181 3.147 2.623.046.77-.266 1.5-.88 2.057-.615.557-1.443.864-2.334.864-.76 0-1.378.532-1.378 1.187v2.585c0 .655.617 1.187 1.378 1.187.761 0 1.378-.532 1.378-1.187v-1.538zM58.97 19.118c-.76 0-1.377.53-1.377 1.187v.815c0 .655.617 1.186 1.378 1.186.761 0 1.378-.53 1.378-1.186v-.816c0-.655-.617-1.186-1.378-1.186z"></path>
+		</symbol>
+	
+		<symbol id="services2" viewBox="0 0 81 81">
+			<path d="M76.965 73.103h-4.553l.42-.5a9.585 9.585 0 0 0 1.788-9.167l-4.114-12.702a9.626 9.626 0 0 0-6.834-6.4l-2.044-.517a4.955 4.955 0 0 0-3.513-2.06l.001-5.058a1.186 1.186 0 0 0-2.371 0l-.001 5.03h-2.368l-2.933-.742a1.888 1.888 0 0 1-1.407-1.556l-.674-4.525c2.718-2.14 4.731-5.022 5.34-8.465h.977c.373 0 .732-.06 1.069-.17l-.002 4.874a1.186 1.186 0 1 0 2.371 0c.001-.945.005-12.023.005-15.674C58.129 6.923 51.214 0 42.664 0h-4.407c-8.52.043-15.386 6.956-15.379 15.47 0 3.982-.002-.11.007 26.287a4.955 4.955 0 0 0-3.513 2.06l-2.044.516a9.626 9.626 0 0 0-6.834 6.401L6.38 63.435a9.584 9.584 0 0 0 1.788 9.168l.42.5H4.035a3.953 3.953 0 0 0-3.949 3.949A3.953 3.953 0 0 0 4.035 81h72.93a3.953 3.953 0 0 0 3.949-3.948 3.953 3.953 0 0 0-3.949-3.949zM68.25 51.465l4.114 12.7a7.226 7.226 0 0 1-1.349 6.913l-1.7 2.025h-2.184a5.86 5.86 0 0 0 .369-2.047 2.462 2.462 0 0 0-2.46-2.459h-2.495V46.683c0-.063-.002-.127-.004-.19.157.082 4.289.586 5.709 4.972zm-3.209 19.504c.048 0 .087.039.087.087 0 .743-.236 1.454-.667 2.047H16.54a3.478 3.478 0 0 1-.667-2.047c0-.048.039-.087.087-.087h49.082zm-9.292-47.933a1.072 1.072 0 0 1-1.07 1.033h-.791l.012-4.806h.781a1.07 1.07 0 0 1 1.068 1.045v2.728zM35.035 5.685c0-1.813 1.448-3.293 3.241-3.312l.059-.001h4.328c7.237 0 13.093 5.859 13.086 13.098v1.421h-9.578c-6.14 0-11.136-4.995-11.136-11.136v-.07zm.367 8.212c2.468 3.257 6.377 5.366 10.77 5.366h5.355l-.013 5.056c0 4.024-2.356 7.083-5.013 9.036-.017.01-3.184 2.42-6.002 2.498-2.603-.073-5.865-2.42-6-2.497-2.657-1.954-5.015-5.014-5.015-9.042l-.03-6.366a1.094 1.094 0 0 1 1.095-1.099c2.108 0 3.94-1.2 4.853-2.952zm12.106 27.832H33.491a4.26 4.26 0 0 0 .82-1.948l.507-3.407c2.15 1.227 4.244 1.82 5.657 1.85H40.526c1.412-.03 3.506-.623 5.657-1.85l.507 3.407c.108.725.396 1.39.82 1.948zM26.321 26.441h.978c.608 3.44 2.618 6.323 5.34 8.465l-.674 4.526a1.888 1.888 0 0 1-1.408 1.555l-2.933.742h-2.368l-.004-15.459c.337.11.696.17 1.069.17zm-1.07-3.405v-2.728a1.07 1.07 0 0 1 1.068-1.045h.771l.022 4.806h-.791c-.578 0-1.049-.46-1.07-1.033zM33.12 3.452a5.685 5.685 0 0 0-.455 2.233c.016.162-.112 2.413.982 5.118v.578a3.1 3.1 0 0 1-3.097 3.097 3.46 3.46 0 0 0-3.301 2.413h-.93c-.373 0-.732.06-1.069.171v-1.593c-.005-5.432 3.276-10.02 7.87-12.017zM8.637 64.166l4.113-12.701c1.42-4.384 5.55-4.888 5.71-4.971-.003.063-.005.126-.005.19v7.027a1.186 1.186 0 1 0 2.371 0v-7.028a2.585 2.585 0 0 1 2.583-2.582h34.183a2.585 2.585 0 0 1 2.582 2.582v21.914H20.826v-9.343a1.186 1.186 0 1 0-2.371 0v9.343h-2.496a2.462 2.462 0 0 0-2.458 2.459c0 .708.127 1.4.368 2.047h-2.184l-1.7-2.025a7.226 7.226 0 0 1-1.348-6.912zm68.328 14.462H4.035c-.87 0-1.577-.707-1.577-1.576 0-.87.707-1.577 1.577-1.577h72.93c.87 0 1.577.707 1.577 1.577s-.707 1.576-1.577 1.576z"></path><path d="M40.5 61.91a5.436 5.436 0 0 0 5.43-5.43 5.436 5.436 0 0 0-5.43-5.43 5.436 5.436 0 0 0-5.43 5.43 5.436 5.436 0 0 0 5.43 5.43zm0-8.488a3.062 3.062 0 0 1 3.058 3.058 3.062 3.062 0 0 1-3.058 3.058 3.062 3.062 0 0 1-3.058-3.058 3.062 3.062 0 0 1 3.058-3.058z"></path>
+		</symbol>
+	
+		<symbol id="services3" viewBox="0 0 53 81">
+			<path d="M47.367 8.897h-.686V4.338A4.314 4.314 0 0 0 45.046.946a4.315 4.315 0 0 0-3.672-.835L2.85 8.951l-.008.002A3.387 3.387 0 0 0 .057 12.28v19.708a1.189 1.189 0 0 0 2.378 0V12.28c0-.554.45-1.006 1.005-1.006h28.865a1.189 1.189 0 1 0 0-2.377H13.717l28.189-6.468a1.948 1.948 0 0 1 1.658.377c.47.374.739.932.739 1.532v4.559H37.06a1.189 1.189 0 1 0 0 2.377h10.307c1.765 0 3.2 1.436 3.2 3.2v49.138a1.189 1.189 0 0 0 2.378 0V14.474a5.584 5.584 0 0 0-5.578-5.577zM51.755 67.179c-.657 0-1.189.532-1.189 1.189v7.055c0 1.764-1.435 3.2-3.2 3.2H3.44a1.007 1.007 0 0 1-1.005-1.006V36.743a1.189 1.189 0 0 0-2.378 0v40.874A3.387 3.387 0 0 0 3.439 81h43.927a5.584 5.584 0 0 0 5.578-5.578v-7.054c0-.657-.532-1.19-1.189-1.19z"></path><path d="M26.453 52.901c8.322 0 15.092-6.77 15.092-15.091 0-8.322-6.77-15.092-15.092-15.092-8.321 0-15.091 6.77-15.091 15.092 0 8.321 6.77 15.091 15.091 15.091zm0-2.377c-1.187 0-2.752-2.474-3.57-6.662h7.14c-.818 4.188-2.383 6.662-3.57 6.662zm4.034-.66c.3-.534.578-1.135.832-1.8.474-1.241.851-2.663 1.124-4.202h5.189a12.78 12.78 0 0 1-7.145 6.002zm8.68-12.054c0 1.277-.191 2.51-.544 3.675H32.77a37.02 37.02 0 0 0 .033-7.006h5.919c.288 1.063.445 2.178.445 3.33zM37.808 32.1h-5.307c-.276-1.67-.673-3.212-1.183-4.546a13.577 13.577 0 0 0-.832-1.8 12.775 12.775 0 0 1 7.322 6.347zm-11.355-7.005c1.22 0 2.838 2.61 3.635 7.005h-7.27c.797-4.396 2.416-7.005 3.635-7.005zm3.963 9.383a34.41 34.41 0 0 1 .158 3.33c0 1.31-.07 2.537-.194 3.676h-7.853a34.082 34.082 0 0 1-.194-3.675c0-1.178.057-2.29.158-3.33h7.925zm-7.996-8.723a13.64 13.64 0 0 0-.832 1.799c-.509 1.334-.907 2.875-1.183 4.547h-5.307c1.5-2.971 4.13-5.275 7.322-6.346zM13.74 37.81c0-1.153.156-2.269.445-3.33h5.92a37.02 37.02 0 0 0 .032 7.005h-5.854a12.674 12.674 0 0 1-.544-3.675zm6.724 6.052c.273 1.54.65 2.96 1.124 4.203.254.664.532 1.265.832 1.799a12.78 12.78 0 0 1-7.145-6.002h5.19zM12.55 60.277h27.9a1.189 1.189 0 0 0 0-2.378h-27.9a1.189 1.189 0 0 0 0 2.378zM17.817 64.8a1.189 1.189 0 0 0 0 2.379h17.366a1.189 1.189 0 1 0 0-2.378H17.817z"></path>
+		</symbol>
+	
+		<symbol id="services4" viewBox="0 0 512 512">
+			<path d="M437 433.25h15v15h-15z"></path><path d="M489.5 63.75h-467C10.094 63.75 0 73.843 0 86.249v82.499h15v-30h482V425.75c0 4.136-3.364 7.5-7.5 7.5H467v15h22.5c12.406 0 22.5-10.093 22.5-22.5V86.249c0-12.406-10.094-22.499-22.5-22.499zM15 123.749v-37.5c0-4.135 3.364-7.5 7.5-7.5h467c4.136 0 7.5 3.364 7.5 7.5v37.5zM15 425.75V183.748H0V425.75c0 12.407 10.094 22.5 22.5 22.5H422v-15H22.5c-4.136 0-7.5-3.364-7.5-7.5z"></path><path d="M30 93.749h15v15H30zM60 93.749h15v15H60zM467 93.749h15v15h-15zM362.001 93.749H452v15h-89.999zM90 93.749h15v15H90zM467 153.748h15v15h-15zM467 183.749h15v15h-15zM67.901 281.247h376.197v15H67.901zM67.901 348.746h226.198v15H67.901zM67.901 378.746H173.5v15H67.901zM188.5 378.746h105.6v15H188.5zM444.099 348.746h-135v45h135zm-15 30h-105v-15h105zM67.901 311.247H232.45v15H67.901zM247.45 311.247h164.548v15H247.45zM164.729 244.547l6.373 16.887 14.034-5.296-26.791-70.987-12.868.012-27.021 70.945 14.019 5.339 6.437-16.9zm-12.85-34.049l7.188 19.049h-14.444zM229.598 183.004c-20.228 0-36.684 16.457-36.684 36.685s16.456 36.685 36.684 36.685c7.372 0 14.399-2.153 20.377-6.164l9.034 9.034 10.606-10.606-9.132-9.132c3.775-5.86 5.8-12.689 5.8-19.817 0-20.229-16.457-36.685-36.685-36.685zm19.842 45.458l-9.104-9.104-10.606 10.606 9.276 9.276a21.603 21.603 0 0 1-9.408 2.132c-11.956 0-21.684-9.728-21.684-21.685s9.728-21.685 21.684-21.685c11.957 0 21.686 9.728 21.686 21.685a21.66 21.66 0 0 1-1.844 8.775zM109.647 200.155v-15H67.901v75.992h15v-26.746h26.746v-15H82.901v-19.246z"></path>
+		</symbol>
+	
+		<symbol id="services5" viewBox="0 0 510.862 510.862">
+			<path d="M486.973 259.24h-106.23v-18.72c0-7.004-5.698-12.703-12.703-12.703h-85.833c-7.005 0-12.703 5.699-12.703 12.703v18.72h-13.907v-69.677c0-13.659-11.112-24.772-24.771-24.772h-30.281V29.897c0-8.187-6.66-14.848-14.848-14.848h-11.574v-3.372C174.122 5.239 168.883 0 162.444 0h-58.087C97.919 0 92.68 5.239 92.68 11.677v3.372H81.106c-8.187 0-14.848 6.661-14.848 14.848v134.894H26.916c-13.659 0-24.773 11.113-24.773 24.772v77.092c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-77.092c0-5.388 4.384-9.772 9.773-9.772h203.909c5.388 0 9.771 4.384 9.771 9.772v261.92c0 5.388-4.384 9.772-9.771 9.772H26.916c-5.389 0-9.773-4.384-9.773-9.772V296.655c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v154.827c0 13.659 11.113 24.772 24.773 24.772h15.25v27.082c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-27.082h84.362v12.861c0 11.991 9.755 21.746 21.745 21.746h323.7c11.99 0 21.745-9.755 21.745-21.746v-208.13c0-11.99-9.754-21.745-21.745-21.745zM107.68 15h51.441v15.098H107.68zM81.258 30.049H92.68v3.372c0 6.439 5.238 11.677 11.677 11.677h58.087c6.439 0 11.678-5.238 11.678-11.677v-3.372h11.422v134.742H81.258zM432.843 274.24v220.559h-15.007V274.24zM255.596 451.483V274.24h69.527c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-40.62v-16.423h81.239v16.423h-10.619c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h47.713v221.621H215.575v-19.607h15.25c13.659.001 24.771-11.112 24.771-24.771zm-99.068 37.633v-12.861h44.047v19.607h-37.302a6.753 6.753 0 0 1-6.745-6.746zm337.19 0a6.752 6.752 0 0 1-6.745 6.746h-39.13V274.24h39.13a6.752 6.752 0 0 1 6.745 6.746z"></path><path d="M289.884 440.035h55.417c9.272 0 16.815-7.543 16.815-16.815v-21.824c0-9.272-7.543-16.815-16.815-16.815h-55.417c-9.271 0-16.814 7.543-16.814 16.815v21.824c0 9.272 7.543 16.815 16.814 16.815zm-1.814-38.639c0-1.001.814-1.815 1.814-1.815h55.417c1.001 0 1.815.814 1.815 1.815v21.824a1.817 1.817 0 0 1-1.815 1.815h-55.417c-1 0-1.814-.814-1.814-1.815zM65.763 422.566V218.48c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v204.087a7.5 7.5 0 1 0 15-.001zM112.835 422.566V218.48c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v204.087a7.5 7.5 0 1 0 15-.001zM159.906 422.566V218.48c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v204.087a7.5 7.5 0 1 0 15-.001zM206.977 422.566V218.48c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v204.087a7.5 7.5 0 1 0 15-.001z"></path>
+		</symbol>
+	
+		<symbol id="telegram" viewBox="0 -39 512.00011 512">
+			<path d="M504.094 11.86C497.84 4.21 488.473 0 477.714 0c-5.847 0-12.042 1.23-18.41 3.664L25.907 169.105c-23 8.778-26.097 21.95-25.898 29.02s4.039 20.047 27.5 27.512c.14.043.281.086.422.125l89.898 25.726 48.617 139.024c6.63 18.953 21.508 30.726 38.836 30.726 10.926 0 21.672-4.578 31.078-13.234l55.606-51.2 80.652 64.942c.008.008.02.012.028.02l.765.617.215.168c8.965 6.953 18.75 10.625 28.309 10.629h.003c18.676 0 33.547-13.825 37.88-35.215l71.011-350.64c2.852-14.075.461-26.669-6.734-35.466zM147.902 246.601l173.442-88.606L213.348 272.75a14.975 14.975 0 0 0-3.641 6.684l-20.824 84.351zm68.133 139.332c-.719.66-1.441 1.25-2.164 1.793l19.32-78.25 35.145 28.3zm265.39-344.567l-71.01 350.645c-.685 3.355-2.868 11.164-8.481 11.164-2.774 0-6.258-1.512-9.825-4.258l-91.39-73.586a.173.173 0 0 0-.043-.031l-54.38-43.79 156.177-165.949a15 15 0 0 0-17.746-23.636L127.859 223.152l-91.12-26.07 433.265-165.39c3.66-1.399 6.215-1.692 7.71-1.692.919 0 2.552.11 3.157.855.797.973 1.813 4.29.555 10.512zm0 0"></path>
+		</symbol>
+	
+		<symbol id="whatsapp" viewBox="0 0 24 24">
+			<path d="M17.507 14.307l-.009.075c-2.199-1.096-2.429-1.242-2.713-.816-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.293-.506.32-.578.878-1.634.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.576-.05-.997-.042-1.368.344-1.614 1.774-1.207 3.604.174 5.55 2.714 3.552 4.16 4.206 6.804 5.114.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"></path><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c7.905 4.27 17.661-1.4 17.665-10.449 0-3.176-1.24-6.165-3.495-8.411zm1.482 8.417c-.006 7.633-8.385 12.4-15.012 8.504l-.36-.214-3.75.975 1.005-3.645-.239-.375c-4.124-6.565.614-15.145 8.426-15.145a9.865 9.865 0 0 1 7.021 2.91 9.788 9.788 0 0 1 2.909 6.99z"></path>
+		</symbol>
+	
+</svg>
+
+<header>
+    <h1 id="logo">Gulp SVG Sprites <small>(12 icons in &lt;symbol&gt; mode)</small></h1>
+    <h4>Files Generated:</h4>
+    <ol>
+        <li><a href="svg/symbols.svg">svg/symbols.svg</a></li>
+    </ol>
+    <h4>Usage:</h4>
+    <ol>
+        <li>
+            Include the <strong>contents</strong> of the <a href="svg/symbols.svg">SVG file</a> just after the opening <code>&lt;body&gt;</code> tag.
+        </li>
+        <li>
+            Paste one of the snippets anywhere into your website.
+        </li>
+    </ol>
+
+</header>
+<section>
+    <ul class="icon-boxes">
+        
+
+        <li title="arrow">
+            <div class="icon-box" id="icon-box-arrow">
+                <svg class="icon arrow">
+                    <use xlink:href="#arrow" />
+                </svg>
+            </div>
+            <h2>arrow</h2>
+            <button onclick="showPopover('snippet-arrow')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-arrow')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-arrow">
+                <pre><code>&lt;svg class=&quot;icon arrow&quot;&gt;&lt;use xlink:href=&quot;#arrow&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="email">
+            <div class="icon-box" id="icon-box-email">
+                <svg class="icon email">
+                    <use xlink:href="#email" />
+                </svg>
+            </div>
+            <h2>email</h2>
+            <button onclick="showPopover('snippet-email')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-email')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-email">
+                <pre><code>&lt;svg class=&quot;icon email&quot;&gt;&lt;use xlink:href=&quot;#email&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="facebook">
+            <div class="icon-box" id="icon-box-facebook">
+                <svg class="icon facebook">
+                    <use xlink:href="#facebook" />
+                </svg>
+            </div>
+            <h2>facebook</h2>
+            <button onclick="showPopover('snippet-facebook')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-facebook')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-facebook">
+                <pre><code>&lt;svg class=&quot;icon facebook&quot;&gt;&lt;use xlink:href=&quot;#facebook&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="mail">
+            <div class="icon-box" id="icon-box-mail">
+                <svg class="icon mail">
+                    <use xlink:href="#mail" />
+                </svg>
+            </div>
+            <h2>mail</h2>
+            <button onclick="showPopover('snippet-mail')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-mail')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-mail">
+                <pre><code>&lt;svg class=&quot;icon mail&quot;&gt;&lt;use xlink:href=&quot;#mail&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="phone">
+            <div class="icon-box" id="icon-box-phone">
+                <svg class="icon phone">
+                    <use xlink:href="#phone" />
+                </svg>
+            </div>
+            <h2>phone</h2>
+            <button onclick="showPopover('snippet-phone')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-phone')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-phone">
+                <pre><code>&lt;svg class=&quot;icon phone&quot;&gt;&lt;use xlink:href=&quot;#phone&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="services1">
+            <div class="icon-box" id="icon-box-services1">
+                <svg class="icon services1">
+                    <use xlink:href="#services1" />
+                </svg>
+            </div>
+            <h2>services1</h2>
+            <button onclick="showPopover('snippet-services1')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-services1')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-services1">
+                <pre><code>&lt;svg class=&quot;icon services1&quot;&gt;&lt;use xlink:href=&quot;#services1&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="services2">
+            <div class="icon-box" id="icon-box-services2">
+                <svg class="icon services2">
+                    <use xlink:href="#services2" />
+                </svg>
+            </div>
+            <h2>services2</h2>
+            <button onclick="showPopover('snippet-services2')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-services2')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-services2">
+                <pre><code>&lt;svg class=&quot;icon services2&quot;&gt;&lt;use xlink:href=&quot;#services2&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="services3">
+            <div class="icon-box" id="icon-box-services3">
+                <svg class="icon services3">
+                    <use xlink:href="#services3" />
+                </svg>
+            </div>
+            <h2>services3</h2>
+            <button onclick="showPopover('snippet-services3')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-services3')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-services3">
+                <pre><code>&lt;svg class=&quot;icon services3&quot;&gt;&lt;use xlink:href=&quot;#services3&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="services4">
+            <div class="icon-box" id="icon-box-services4">
+                <svg class="icon services4">
+                    <use xlink:href="#services4" />
+                </svg>
+            </div>
+            <h2>services4</h2>
+            <button onclick="showPopover('snippet-services4')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-services4')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-services4">
+                <pre><code>&lt;svg class=&quot;icon services4&quot;&gt;&lt;use xlink:href=&quot;#services4&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="services5">
+            <div class="icon-box" id="icon-box-services5">
+                <svg class="icon services5">
+                    <use xlink:href="#services5" />
+                </svg>
+            </div>
+            <h2>services5</h2>
+            <button onclick="showPopover('snippet-services5')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-services5')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-services5">
+                <pre><code>&lt;svg class=&quot;icon services5&quot;&gt;&lt;use xlink:href=&quot;#services5&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="telegram">
+            <div class="icon-box" id="icon-box-telegram">
+                <svg class="icon telegram">
+                    <use xlink:href="#telegram" />
+                </svg>
+            </div>
+            <h2>telegram</h2>
+            <button onclick="showPopover('snippet-telegram')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-telegram')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-telegram">
+                <pre><code>&lt;svg class=&quot;icon telegram&quot;&gt;&lt;use xlink:href=&quot;#telegram&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="whatsapp">
+            <div class="icon-box" id="icon-box-whatsapp">
+                <svg class="icon whatsapp">
+                    <use xlink:href="#whatsapp" />
+                </svg>
+            </div>
+            <h2>whatsapp</h2>
+            <button onclick="showPopover('snippet-whatsapp')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-whatsapp')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-whatsapp">
+                <pre><code>&lt;svg class=&quot;icon whatsapp&quot;&gt;&lt;use xlink:href=&quot;#whatsapp&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+    </ul>
+</section>
+<footer>
+    <p>Generated by <a href="https://github.com/shakyshane/gulp-svg-sprites">Gulp Svg Sprites</a> - Preview page courtesy of <a href="http://iconizr.com" target="_blank">iconizr</a>.</p>
+</footer>
+<script type="text/javascript">
+    var openSnippet;
+    function showPopover(id) {
+        openSnippet = document.getElementById(id);
+        openSnippet.classList.add("active");
+    }
+    function hidePopover() {
+
+        openSnippet.classList.remove("active");
+    }
+    function invertBackground(id) {
+        var elem = document.getElementById(id);
+        elem.classList.toggle("inverted");
+    }
+</script>
+</body>
+</html>
